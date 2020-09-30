@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box !important;
+}
+
+body {
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+#join-room-btn {
+  width: 100%;
+}
+
+.editor-board-container {
+  box-sizing: border-box !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-form-component {
+  margin-top: 0% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* To apply styling to the code editor you need to use .code pre-class */
+.code,
+.editor {
+  margin-top: 0% !important;
+  flex: 1;
+  min-width: 50vw;
+  min-height: 80vh;
+  background-color: black;
+  caret-color: white;
+}
+
+.submit-code {
+  margin: 0 auto;
+}
+
+/** Fabric Whiteboard **/
+
+.whiteboard-component {
+  box-sizing: border-box !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fabric-whiteboard {
+  flex: 1;
+  margin-top: 0%;
+  min-width: 50vw !important;
+  min-height: 80vh !important;
+}
+
+.whiteboard {
+  border: 1px solid black;
+  width: 50vw;
+  height: 40vw;
+}
+
+.toolbar {
+  margin: 12px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toolbar-button {
+  margin: 0px 12px;
+}

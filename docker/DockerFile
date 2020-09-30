@@ -1,0 +1,22 @@
+FROM node:12-alpine
+
+# Create app directory
+# WORKDIR /usr/src/app
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+# RUN ["node", "docker/writeNewFile.js", "userCode.js", "console.log('TESTING in DOCKERFILE')"]
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# Bundle app source - Copy the rest of the app's source code from your host to the image filesystem
+COPY . .
+
+EXPOSE 8082
