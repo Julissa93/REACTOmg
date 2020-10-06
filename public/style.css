@@ -35,7 +35,7 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   border-bottom: 2px solid var(--primary-red);
 }
 
@@ -65,6 +65,7 @@ a {
   padding: 0.3rem 1.3rem;
   border: 2px solid var(--primary-red);
   border-radius: 6px;
+  transition: 0.3s all ease;
 }
 
 .btn:focus {
@@ -76,15 +77,32 @@ a {
 }
 
 .btn-login,
-.btn-logout {
+.btn-logout,
+.btn-join {
   background-color: var(--primary-red);
   color: #fff;
-  transition: 0.3s all ease;
 }
 
 .btn-login:hover,
-.btn-logout:hover {
+.btn-logout:hover,
+.btn-join:hover {
   opacity: 0.9;
+}
+
+.btn-invite {
+  color: var(--primary-red);
+}
+
+.btn-invite:hover {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+.btn-run,
+.btn-clear {
+  border: 2px solid #000;
+  background-color: #000;
+  color: #fff;
 }
 
 /* AUTH FORMS */
@@ -118,6 +136,7 @@ a {
 /* INVITE CONTAINER */
 
 .invite-container {
+  margin-left: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -129,6 +148,7 @@ a {
 .board-container {
   /* box-sizing: border-box !important; */
   display: flex;
+  margin-bottom: 2rem;
 }
 
 .editor-form-component {
@@ -136,12 +156,14 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* min-height: 80vh; */
+  min-height: 80vh;
 }
 
 /* To apply styling to the code editor you need to use .code pre-class */
 .code,
 .editor {
+  margin-top: 0% !important;
+  flex: 1;
   min-width: 50vw;
   min-height: 80vh;
   background-color: black;

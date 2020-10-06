@@ -73,14 +73,20 @@ class CodeEditor extends Component {
       <div className="editor-container">
         <div className="invite-container">
           {!this.state.roomInvite ? (
-            <button onClick={this.toggleRoomInvite} className="btn invite-item">
+            <button
+              onClick={this.toggleRoomInvite}
+              className="btn btn-invite invite-item"
+            >
               Invite to Room
             </button>
           ) : (
             <h4>Room code to share: {this.state.room}</h4>
           )}
           {!this.state.roomJoin ? (
-            <button onClick={this.toggleRoomJoin} className="btn invite-item">
+            <button
+              onClick={this.toggleRoomJoin}
+              className="btn btn-join invite-item"
+            >
               Join New Room
             </button>
           ) : (
