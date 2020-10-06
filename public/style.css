@@ -1,56 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box !important;
+}
+
+:root {
+  --light-grey: #f3f9fd;
+  --primary-red: #ea2028;
+  --primary-black: #140e0e;
+  --light-red: #e84646;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
+  /* background-color: var(--light-grey); */
 }
 
 a {
+  color: inherit;
   text-decoration: none;
 }
 
-label {
-  display: block;
+.logo {
+  font-size: 1.7rem;
+}
+/* NAVBAR */
+
+.nav-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--primary-red);
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+.nav-item {
+  cursor: pointer;
+  margin-right: 1.5rem;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+.nav-link {
+  transition: 0.3s all ease;
 }
 
-#join-room-btn {
+.nav-item:last-child {
+  margin-right: 0;
+}
+
+.nav-link:hover {
+  color: var(--primary-red);
+}
+
+/* BUTTONS */
+.btn {
+  background-color: #fff;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  padding: 0.3rem 1.3rem;
+  border: 2px solid var(--primary-red);
+  border-radius: 6px;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-login {
   width: 100%;
 }
 
-.editor-board-container {
-  box-sizing: border-box !important;
+.btn-login,
+.btn-logout {
+  background-color: var(--primary-red);
+  color: #fff;
+  transition: 0.3s all ease;
+}
+
+.btn-login:hover,
+.btn-logout:hover {
+  opacity: 0.9;
+}
+
+/* AUTH FORMS */
+.auth-container {
+  padding: 4rem 3rem;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.form-container {
+  width: 250px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.form-item label {
+  margin-bottom: 0.2rem;
+}
+
+/* INVITE CONTAINER */
+
+.invite-container {
+  margin-bottom: 1rem;
+}
+
+.invite-item {
+  margin-left: 1rem;
+}
+
+/* CODE EDITOR */
+.board-container {
+  /* box-sizing: border-box !important; */
+  display: flex;
 }
 
 .editor-form-component {
   margin-top: 0% !important;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  /* min-height: 80vh; */
 }
 
 /* To apply styling to the code editor you need to use .code pre-class */
 .code,
 .editor {
-  margin-top: 0% !important;
-  flex: 1;
   min-width: 50vw;
   min-height: 80vh;
   background-color: black;
@@ -58,7 +149,7 @@ form div {
 }
 
 .submit-code {
-  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 /** Fabric Whiteboard **/
@@ -86,12 +177,7 @@ form div {
 }
 
 .toolbar {
-  margin: 12px 0px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-}
-
-.toolbar-button {
-  margin: 0px 12px;
+  margin-top: 1rem;
 }

@@ -172,7 +172,7 @@ class Whiteboard extends Component {
         </div>
 
         <div className="toolbar" id="toolbar">
-          <button className="toolbar-button" onClick={this.handleClearButton}>
+          <button className="btn" onClick={this.handleClearButton}>
             Clear
           </button>
         </div>

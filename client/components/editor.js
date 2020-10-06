@@ -15,7 +15,7 @@ const Editor = props => {
         preClassName="language-js code"
         language="javascript"
       />
-      <button className="submit-code" type="submit">
+      <button className="btn submit-code" type="submit">
         Run
       </button>
     </form>
