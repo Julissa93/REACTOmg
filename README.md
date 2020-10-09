@@ -2,7 +2,7 @@
 
 ## Overview
 
-Anansi is Fullstack Academy's web platform for students to conduct REACTO-style technical interviews remotely. Students may enter private pair programming rooms, where they may answer questions via code editor and/or whiteboard. Both interfaces allow for real-time collaboration between the interviewer and interviewee.
+REACTOmg is Fullstack Academy's web platform for students to conduct REACTO-style technical interviews remotely. Students may enter private pair programming rooms, where they may answer questions via code editor and/or whiteboard. Both interfaces allow for real-time collaboration between the interviewer and interviewee.
 
 ## MVP
 
