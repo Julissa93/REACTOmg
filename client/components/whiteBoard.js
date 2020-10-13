@@ -21,7 +21,7 @@ class Whiteboard extends Component {
     this.state = {
       mode: 'select',
       width: '750px',
-      height: '600px',
+      height: '500px',
       brushColor: '#f44336',
       brushThickness: 2,
       whiteboardData: '{"version":"3.6.3","objects":[]}' //Empty canvas
@@ -172,7 +172,7 @@ class Whiteboard extends Component {
         </div>
 
         <div className="toolbar" id="toolbar">
-          <button className="toolbar-button" onClick={this.handleClearButton}>
+          <button className="btn btn-clear" onClick={this.handleClearButton}>
             Clear
           </button>
         </div>
