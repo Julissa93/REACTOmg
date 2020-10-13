@@ -2,6 +2,7 @@
 const router = require('express').Router()
 const path = require('path')
 const Docker = require('dockerode')
+const {exec} = require('child_process')
 const docker = new Docker()
 
 router.post('/', async (req, res, next) => {
@@ -11,6 +12,7 @@ router.post('/', async (req, res, next) => {
     console.log('user code: ', userCode)
     const pathToDockerDir = path.join(__dirname, '../../docker')
 
+    exec('npm init ')
     const container = await docker.createContainer({
       Image: 'node:12-alpine',
       Tty: true,
@@ -34,7 +36,7 @@ router.post('/', async (req, res, next) => {
       userCode
     ])
     const result = await dockerExec(container, ['node', 'userCode.js'])
-    res.send(result)
+    res.send(result.replace(/[\t\r\n]+/gm, ''))
 
     await container.stop()
     await container.remove()
