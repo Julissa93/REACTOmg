@@ -18,9 +18,7 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 
-/**
- * THUNK CREATORS
- */
+// AUTH THUNKS
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
@@ -56,9 +54,16 @@ export const logout = () => async dispatch => {
   }
 }
 
-/**
- * REDUCER
- */
+// USER THUNKS
+// export const updateUser = (user, userId) => async (dispatch) => {
+//   try {
+
+//   } catch (error) {
+
+//   }
+// }
+
+// REDUCER
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
