@@ -5,5 +5,5 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
-export {default as UpdateProfile} from './update-profile'
+export {default as EditProfile} from './edit-profile'
 export {Login, Signup} from './auth-form'

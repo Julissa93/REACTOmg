@@ -33,16 +33,9 @@ router.get('/:userId', async (req, res, next) => {
 // PUT /api/users/:userId
 router.put('/:userId', async (req, res, next) => {
   try {
-    await User.update(
-      {email: req.body.email},
-      {
-        where: {
-          id: req.params.userId
-        }
-      }
-    )
-
     const user = await User.findByPk(req.params.userId)
+    if (!user) return res.sendStatus(404)
+    const updatedUser = await user.update(req.body)
 
     res.json(user)
   } catch (error) {

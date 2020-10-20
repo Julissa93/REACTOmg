@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, UpdateProfile} from './components'
+import {Login, Signup, UserHome, EditProfile} from './components'
 import {me} from './store'
 import CodeEditor from './components/code-editor'
 
@@ -33,7 +33,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/update" component={UpdateProfile} />
+            <Route path="/edit" component={EditProfile} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
