@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {updateUser} from '../store'
 
 const EditProfile = props => {
-  const {handleSubmit} = props
+  const [email, setEmail] = useState('')
+
+  const {updateUser} = props
+
+  const handleSubmit = evt => {
+    evt.preventDefault()
+    updateUser(email)
+    setEmail('')
+  }
 
   return (
     <div>
@@ -13,7 +21,12 @@ const EditProfile = props => {
           <label htmlFor="email">
             <small>Email</small>
           </label>
-          <input name="email" type="text" />
+          <input
+            name="email"
+            type="text"
+            value={email}
+            onChange={evt => setEmail(evt.target.value)}
+          />
         </div>
         <div className="btn-container">
           <button type="submit" className="btn btn-login">
@@ -33,11 +46,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const email = evt.target.email.value
-      dispatch(updateUser(email))
-    }
+    updateUser: email => dispatch(updateUser(email))
   }
 }
 
