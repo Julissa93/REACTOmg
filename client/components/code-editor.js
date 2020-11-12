@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import Prism, {highlight, languages} from 'prismjs'
 import {connect} from 'react-redux'
 import socket from '../socket'
-import axios from 'axios'
 import {sendCode, executeCode} from '../store/codeEditor'
 import Whiteboard from './whiteboard'
 import Editor from './editor'
 import RoomInput from './room-input'
 import {withRouter} from 'react-router-dom'
+import CodeOutput from './code-output'
 
 class CodeEditor extends Component {
   constructor(props) {
@@ -17,13 +17,15 @@ class CodeEditor extends Component {
       room: '',
       result: '',
       roomInvite: false,
-      roomJoin: false
+      roomJoin: false,
+      isModalOpen: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleRoomSubmit = this.handleRoomSubmit.bind(this)
     this.toggleRoomInvite = this.toggleRoomInvite.bind(this)
     this.toggleRoomJoin = this.toggleRoomJoin.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
   componentDidMount() {
@@ -48,7 +50,7 @@ class CodeEditor extends Component {
     const code = this.state.code.trim()
     this.props.executeCode(code)
     this.setState({result: this.props.result})
-    //alert('Result: ', this.props.result)
+    this.toggleModal()
   }
 
   handleRoomSubmit(roomId) {
@@ -64,6 +66,10 @@ class CodeEditor extends Component {
 
   toggleRoomJoin() {
     this.setState({roomJoin: !this.state.roomJoin})
+  }
+
+  toggleModal() {
+    this.setState({isModalOpen: !this.state.isModalOpen})
   }
 
   render() {
@@ -101,6 +107,12 @@ class CodeEditor extends Component {
           />
           <Whiteboard room={this.state.room} />
         </div>
+
+        <CodeOutput
+          result={this.props.result}
+          isOpen={this.state.isModalOpen}
+          toggleModal={this.toggleModal}
+        />
       </div>
     )
   }

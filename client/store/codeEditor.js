@@ -12,7 +12,8 @@ const EXEC_CODE = 'EXEC_CODE'
  */
 const initialState = {
   code: '',
-  result: ''
+  result: '',
+  loading: true
 }
 
 /**
@@ -38,7 +39,6 @@ export const sendCode = (code, room) => dispatch => {
 export const executeCode = code => async dispatch => {
   try {
     const {data} = await axios.post('/api/submit-code', {code})
-    //alert(`Result: `,  data)
     dispatch(execCode(data))
   } catch (err) {
     console.error(err)
@@ -52,7 +52,7 @@ export default function(state = initialState, action) {
     case UPDATE_CODE:
       return {...state, code: action.payload}
     case EXEC_CODE:
-      return {...state, result: action.payload}
+      return {...state, result: action.payload, loading: false}
     default:
       return state
   }
