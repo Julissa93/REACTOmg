@@ -1,20 +1,30 @@
 import socket from '../socket'
+import axios from 'axios'
 
 /**
  * ACTION TYPES
  */
 const UPDATE_CODE = 'UPDATE_CODE'
+const EXEC_CODE = 'EXEC_CODE'
 
 /**
  * INITIAL STATE
  */
-const defaultCode = ''
+const initialState = {
+  code: '',
+  result: '',
+  loading: true
+}
 
 /**
  * ACTION CREATORS
  */
-export const sentCode = code => {
-  return {type: UPDATE_CODE, code}
+export const sentCode = payload => {
+  return {type: UPDATE_CODE, payload}
+}
+
+export const execCode = payload => {
+  return {type: EXEC_CODE, payload}
 }
 
 export const sendCode = (code, room) => dispatch => {
@@ -26,13 +36,23 @@ export const sendCode = (code, room) => dispatch => {
   }
 }
 
+export const executeCode = code => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/submit-code', {code})
+    dispatch(execCode(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
 /**
  * REDUCER
  */
-export default function(state = defaultCode, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case UPDATE_CODE:
-      return action.code
+      return {...state, code: action.payload}
+    case EXEC_CODE:
+      return {...state, result: action.payload, loading: false}
     default:
       return state
   }

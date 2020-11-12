@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import Prism, {highlight, languages} from 'prismjs'
 import {connect} from 'react-redux'
 import socket from '../socket'
-import axios from 'axios'
-import {sendCode} from '../store/codeEditor'
+import {sendCode, executeCode} from '../store/codeEditor'
 import Whiteboard from './whiteboard'
 import Editor from './editor'
 import RoomInput from './room-input'
 import {withRouter} from 'react-router-dom'
+import CodeOutput from './code-output'
 
 class CodeEditor extends Component {
   constructor(props) {
@@ -15,14 +15,17 @@ class CodeEditor extends Component {
     this.state = {
       code: '',
       room: '',
+      result: '',
       roomInvite: false,
-      roomJoin: false
+      roomJoin: false,
+      isModalOpen: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleRoomSubmit = this.handleRoomSubmit.bind(this)
     this.toggleRoomInvite = this.toggleRoomInvite.bind(this)
     this.toggleRoomJoin = this.toggleRoomJoin.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
   componentDidMount() {
@@ -42,15 +45,12 @@ class CodeEditor extends Component {
     this.props.sendCode(newCode, this.state.room)
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault()
     const code = this.state.code.trim()
-    try {
-      const res = await axios.post('/api/submit-code', {code})
-      console.log('Result Of User Code : ', res)
-    } catch (err) {
-      console.error('something went wrong :( ', err)
-    }
+    this.props.executeCode(code)
+    this.setState({result: this.props.result})
+    this.toggleModal()
   }
 
   handleRoomSubmit(roomId) {
@@ -66,6 +66,10 @@ class CodeEditor extends Component {
 
   toggleRoomJoin() {
     this.setState({roomJoin: !this.state.roomJoin})
+  }
+
+  toggleModal() {
+    this.setState({isModalOpen: !this.state.isModalOpen})
   }
 
   render() {
@@ -99,20 +103,28 @@ class CodeEditor extends Component {
             code={this.state.code}
             handleClick={this.handleClick}
             handleSubmit={this.handleSubmit}
+            output={this.state.result}
           />
           <Whiteboard room={this.state.room} />
         </div>
+        <CodeOutput
+          result={this.props.result}
+          isOpen={this.state.isModalOpen}
+          toggleModal={this.toggleModal}
+        />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  stateCode: state.codeEditor
+  stateCode: state.codeEditor.code,
+  result: state.codeEditor.result
 })
 
 const mapDispatchToProps = dispatch => ({
-  sendCode: (newCode, room) => dispatch(sendCode(newCode, room))
+  sendCode: (newCode, room) => dispatch(sendCode(newCode, room)),
+  executeCode: code => dispatch(executeCode(code))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(
