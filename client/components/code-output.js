@@ -12,9 +12,15 @@ const CodeOutput = props => {
       className="output"
       overlayClassName="overlay"
     >
-      <button onClick={props.toggleModal}>X</button>
+      <button className="exit-modal" onClick={props.toggleModal}>
+        X
+      </button>
 
-      <h3>Code Output:{props.result}</h3>
+      <h3 className="modal-title">Code Output</h3>
+      <div className="result">
+        {' > '}
+        {props.result}
+      </div>
     </ReactModal>
   )
 }

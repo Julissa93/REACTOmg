@@ -107,7 +107,6 @@ class CodeEditor extends Component {
           />
           <Whiteboard room={this.state.room} />
         </div>
-
         <CodeOutput
           result={this.props.result}
           isOpen={this.state.isModalOpen}
