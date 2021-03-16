@@ -20,6 +20,7 @@ artifacts:
     - server/index.js
     - server/db/index.js
     - package.json
+    - node_modules
     - webpack.config.js
     - .babelrc
     - .editorconfig
