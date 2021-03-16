@@ -196,7 +196,7 @@ a {
   border: 1px solid black;
   width: 50vw;
   height: 40vw;
-  z-index: -1;
+  /*z-index: -1;*/
 }
 
 .toolbar {
