@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      - echo Installing source NPM dependences...
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run start-dev
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - server/index.js
+    - server/db/index.js
+    - package.json
+    - webpack.config.js
+    - .babelrc
+    - .editorconfig
